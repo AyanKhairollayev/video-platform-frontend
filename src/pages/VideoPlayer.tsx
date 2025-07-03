@@ -9,7 +9,7 @@ export default function VideoPlayer() {
 
   useEffect(() => {
     if (id) {
-      setSrc(`http://localhost:8080/${id}`);
+      setSrc(`http://localhost:8080/videos/stream/${id}`);
     }
   }, [id]);
 
