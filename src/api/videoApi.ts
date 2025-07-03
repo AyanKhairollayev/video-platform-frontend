@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "video-platform-frontend.railway.internal",
+  baseURL: "http://localhost:8080",
 });
 
 export interface VideoPreviewDto {
@@ -20,7 +20,7 @@ export async function getVideoList(): Promise<VideoPreviewDto[]> {
 export async function uploadVideo(formData: FormData) {
   // если backend на другом порту – убедитесь, что включен CORS
   return axios.post("/videos/upload", formData, {
-    baseURL: "video-platform-frontend.railway.internal",
+    baseURL: "http://localhost:8080",
     headers: { "Content-Type": "multipart/form-data" },
   });
 }

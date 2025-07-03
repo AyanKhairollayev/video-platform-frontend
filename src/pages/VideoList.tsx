@@ -61,7 +61,7 @@ export default function VideoList() {
           {/* Ссылка на страницу плеера */}
           <Link to={`/watch/${v.id}`}>
             <img
-              src={`video-platform-frontend.railway.internal${v.previewPhoto}`}
+              src={`http://localhost:8080${v.previewPhoto}`}
               alt={v.name}
               className="w-full h-40 object-cover"
             />

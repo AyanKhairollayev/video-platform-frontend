@@ -9,7 +9,7 @@ export default function VideoPlayer() {
 
   useEffect(() => {
     if (id) {
-      setSrc(`video-platform-frontend.railway.internal/${id}`);
+      setSrc(`http://localhost:8080/${id}`);
     }
   }, [id]);
 
