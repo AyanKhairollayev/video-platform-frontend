@@ -9,7 +9,7 @@ export default function VideoPlayer() {
 
   useEffect(() => {
     if (id) {
-      setSrc(`video-platform-backend.railway.internal/${id}`);
+      setSrc(`https://video-platform-backend.railway.internal/${id}`);
     }
   }, [id]);
 
