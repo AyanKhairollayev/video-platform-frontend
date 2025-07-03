@@ -9,7 +9,7 @@ export default function VideoPlayer() {
 
   useEffect(() => {
     if (id) {
-      setSrc(`https://video-platform-backend.vercel.app/${id}`);
+      setSrc(`video-platform-frontend.railway.internal/${id}`);
     }
   }, [id]);
 
