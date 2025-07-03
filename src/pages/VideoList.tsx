@@ -61,7 +61,7 @@ export default function VideoList() {
           {/* Ссылка на страницу плеера */}
           <Link to={`/watch/${v.id}`}>
             <img
-              src={`http://localhost:8080${v.previewPhoto}`}
+              src={`https://video-platform-backend.vercel.app${v.previewPhoto}`}
               alt={v.name}
               className="w-full h-40 object-cover"
             />
