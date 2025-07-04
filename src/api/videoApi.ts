@@ -1,8 +1,6 @@
-import axios from "axios";
+// src/api/videoApi.ts
 
-const api = axios.create({
-  baseURL: "http://localhost:8080",
-});
+import API from "./http";
 
 export interface VideoPreviewDto {
   id: number;
@@ -10,21 +8,26 @@ export interface VideoPreviewDto {
   previewPhoto: string;
 }
 
-// async функция всегда возвращает нативный Promise<T>
+/**
+ * Получить список превью видео
+ */
 export async function getVideoList(): Promise<VideoPreviewDto[]> {
-  const response = await api.get<VideoPreviewDto[]>("/videos/list");
-  return response.data;
+  const { data } = await API.get<VideoPreviewDto[]>("/videos/list");
+  return data;
 }
 
-// …уже есть import axios…
-export async function uploadVideo(formData: FormData) {
-  // если backend на другом порту – убедитесь, что включен CORS
-  return axios.post("/videos/upload", formData, {
-    baseURL: "http://localhost:8080",
+/**
+ * Загрузить новое видео с превью
+ */
+export async function uploadVideo(formData: FormData): Promise<void> {
+  await API.post("/videos/upload", formData, {
     headers: { "Content-Type": "multipart/form-data" },
   });
 }
 
+/**
+ * Удалить видео по ID
+ */
 export async function deleteVideo(id: number): Promise<void> {
-  await api.delete(`/videos/${id}`);
+  await API.delete(`/videos/${id}`);
 }
