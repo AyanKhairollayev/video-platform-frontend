@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const auth = axios.create({
-  baseURL: "http://localhost:8080",    // ← ваш Spring Boot
+  baseURL: "https://video-platform-backend-production.up.railway.app",    // ← ваш Spring Boot
   headers: { "Content-Type": "application/json" },
 });
 
