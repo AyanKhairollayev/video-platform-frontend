@@ -1,39 +1,45 @@
-// src/App.tsx
-
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import { FiVideo } from "react-icons/fi";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./contexts/AuthContext";
+import Header from "./components/Header";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 import VideoUpload from "./components/VideoUpload";
 import VideoList from "./pages/VideoList";
 import VideoPlayer from "./pages/VideoPlayer";
+import PrivateRoute from "./components/PrivateRoute";
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <div className="min-h-screen w-full bg-gray-100">
-        <header className="w-full bg-white shadow-md">
-          <div className="max-w-6xl mx-auto py-4 px-6 flex items-center">
-            <Link to="/" className="flex items-center">
-              <FiVideo className="text-3xl text-blue-600 mr-2" />
-              <h1 className="text-2xl font-bold text-gray-800">Video Platform</h1>
-            </Link>
-          </div>
-        </header>
+    <AuthProvider>
+      <BrowserRouter>
+        <Header />
 
-        <main className="w-full p-6 space-y-8 max-w-6xl mx-auto">
+        <main className="p-6 max-w-6xl mx-auto space-y-8">
           <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+
             <Route
               path="/"
               element={
-                <>
+                <PrivateRoute>
                   <VideoUpload />
                   <VideoList />
-                </>
+                </PrivateRoute>
               }
             />
-            <Route path="/watch/:id" element={<VideoPlayer />} />
+
+            <Route
+              path="/watch/:id"
+              element={
+                <PrivateRoute>
+                  <VideoPlayer />
+                </PrivateRoute>
+              }
+            />
           </Routes>
         </main>
-      </div>
-    </BrowserRouter>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
