@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect, type ReactNode } from "react";
-import { login as apiLogin, register as apiRegister, type LoginDto, type RegisterDto } from "../api/authApi";
+import { register as apiRegister, login as apiLogin, type RegisterDto, type LoginDto } from "../api/authApi";
 
-type AuthContextType = {
+export type AuthContextType = {
   token: string | null;
   username: string | null;
   login: (dto: LoginDto) => Promise<void>;
@@ -33,13 +33,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const register = async (dto: RegisterDto) => {
     await apiRegister(dto);
-    // после успешной регистрации можно сразу логинить
     await login({ username: dto.username, password: dto.password });
   };
 
   const logout = () => {
     setToken(null);
     setUsername(null);
+    localStorage.clear();
   };
 
   return (
