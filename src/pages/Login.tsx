@@ -12,7 +12,7 @@ export default function Login() {
     e.preventDefault();
     auth.login(form)
       .then(() => nav("/"))
-      .catch(e => setError("Invalid credentials"));
+      .catch(_e => setError("Invalid credentials"));
   };
 
   return (
